@@ -2,14 +2,15 @@
 
 @section('content')
 
-<h1>Patients</h1>
-<p class="lead">Add new patient or <a href="{{ route('patients.index') }}" class="btn btn-info" role="button" >Go Back to List</a></p></p>
+<h1>Edit Patient </h1>
+<p class="lead">Update patient details or <a href="{{ route('patients.index') }}" class="btn btn-info" role="button" >Go Back to List</a></p>
 <hr>
 
 @include('partials.alerts.errors')
 
-{!! Form::open([
-    'route' => 'patients.store'
+{!! Form::model($patient, [
+    'method' => 'PATCH',
+    'route' => ['patients.update', $patient->id]
 ]) !!}
 
 <div class="form-group">

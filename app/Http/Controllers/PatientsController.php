@@ -43,4 +43,47 @@ class PatientsController extends Controller
     	return redirect()->back();
     }
 
+    public function show($id)
+    {
+        $patient = Patient::findOrFail($id);
+
+        return view('patients.show')->withPatient($patient);
+    }
+
+    public function edit($id)
+    {
+        $patient = Patient::findOrFail($id);
+
+        return view('patients.edit')->withPatient($patient);
+    }
+
+    public function update($id, Request $request)
+    {
+        $patient = Patient::findOrFail($id);
+
+        $this->validate($request, [
+            'firstname' => 'required',
+            'lastname' => 'required'
+        ]);
+
+        $input = $request->all();
+
+        $patient->fill($input)->save();
+
+        Session::flash('flash_message', 'Patient successfully updated!');
+
+        return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        $patient = Patient::findOrFail($id);
+
+        $patient->delete();
+
+        Session::flash('flash_message', 'Patient successfully deleted!');
+
+        return redirect()->route('patients.index');
+    }
+
 }

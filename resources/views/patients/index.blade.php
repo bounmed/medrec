@@ -9,8 +9,8 @@
 @foreach($patients as $patient)
     <h3>{{ $patient->lastname }} , {{ $patient->firstname }}</h3>
     <p>
-        <a href="{{ route('patients.show', $patient->id) }}" class="btn btn-info">View Patient</a>
-        <a href="{{ route('patients.edit', $patient->id) }}" class="btn btn-primary">Edit Patient</a>
+        <a href="{{ route('patients.show', $patient->id) }}" class="btn btn-info">View </a>
+        <a href="{{ route('patients.edit', $patient->id) }}" class="btn btn-primary">Edit </a>
     </p>
     <hr>
 @endforeach
